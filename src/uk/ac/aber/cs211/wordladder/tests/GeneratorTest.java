@@ -30,5 +30,17 @@ public class GeneratorTest extends TestCase {
 		assertTrue(output != null);
 		System.out.println(output);
 	}
+	
+	/**
+	 * There are only 26 entries in wordlist_1.txt (all of which are mutually linked)...
+	 * So any attempt to walk through 27 entries should fail.
+	 */
+	public void testFail() {
+		Generator generator = new Generator().setDepth(27).setStart("a");
+		List<String> output = generator.run();
+		System.out.println(output);
+		assertTrue(output == null);
+		
+	}
 
 }
