@@ -6,15 +6,18 @@ package uk.ac.aber.cs211.wordladder;
 /**
  * @author Jacob Smith, jas32
  *
- * Encapsulates a single word. This class is immutable, 
- * only its constructor may build it. 
+ * Encapsulates a single word as well as links to 'similar' words.
  */
 public class Word {
 
+	/**
+	 * Internal representation of this particular word as a string of characters.
+	 */
 	private String string;
+	private java.util.List<Word> edges;
 	
 	/**
-	 * @param string The string (no preceeding/trailing spaces) containing 
+	 * @param string The string (no precceding/trailing spaces) containing 
 	 * the word to represent.
 	 */
 	public Word(String string) {
@@ -72,6 +75,27 @@ public class Word {
 	 */
 	public boolean isSimilar(Word other) {
 		return isSimilar(other.getString() );
+	}
+	
+	/**
+	 * Marks a particular word as being 'similar' to this one. This method must be called
+	 * on both Word objects to make the relationship reciprocal.
+	 * @param other The similar word.
+	 */
+	public void addEdge(Word other) {
+		edges.add(other);
+	}
+	
+	/**
+	 * Iff this Word and other are similar a reciprocal relationship is added marking both
+	 * as similar to each other. Otherwise no action is taken.
+	 * @param other The word to test against this one.
+	 */
+	public void testSimilarityAddEdges (Word other) {
+		if (isSimilar(other)) {
+			this.addEdge(other);
+			other.addEdge(this);
+		}
 	}
 	
 }

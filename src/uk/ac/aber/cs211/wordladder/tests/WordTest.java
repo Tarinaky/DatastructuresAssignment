@@ -57,5 +57,7 @@ public class WordTest extends TestCase {
 		assertFalse(flash.isSimilar(flash));
 		assertFalse(flash.isSimilar(clock));
 	}
+	
+	
 
 }
