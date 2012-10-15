@@ -6,7 +6,7 @@ package uk.ac.aber.cs211.wordladder;
 /**
  * @author Jacob Smith, jas32
  *
- * Encapsulates a single word. This class should generally be considered immutable, 
+ * Encapsulates a single word. This class is immutable, 
  * only its constructor may build it. 
  */
 public class Word {
