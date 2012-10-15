@@ -35,4 +35,7 @@ class WordGraph {
 	
 	public void add(String word) {}
 	public Word get(String word) {}
+	
+	//Load from text file.
+	public void loadTextFile(String path) {}
 }

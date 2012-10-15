@@ -3,6 +3,9 @@
  */
 package uk.ac.aber.cs211.wordladder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+
 /**
  * @author Jacob Smith, jas32
  *
@@ -17,6 +20,14 @@ public class WordGraph {
 	 */
 	public WordGraph() {
 		words = new java.util.HashMap<String,Word>(); 
+	}
+	
+	public String toString() {
+		StringBuffer builder = new StringBuffer();
+		for (Word word: words.values() ) {
+			builder.append(word+" ");
+		}
+		return builder.toString();
 	}
 	
 	/**
@@ -45,5 +56,32 @@ public class WordGraph {
 	 */
 	public Word get(String word) {
 		return words.get(word);
+	}
+	
+	/**
+	 * Adds a list of words to the dictionary from a text file and generates the Graph of word similarity.
+	 * This generation step is O(n^2) in time so using a 'cached' format is preferred.
+	 * 
+	 * The text file must be UTF8 and formated with one word per line, any combination of CR/LF may be used
+	 * to denote a new line. Whitespace will be stripped. Empty lines will be ignored.
+	 * @param path The path to the text file to be used.
+	 * @throws IOException 
+	 */
+	public void loadTextFile(String path) throws IOException {
+		BufferedReader input = new BufferedReader(new java.io.FileReader(path)); 
+		String line;
+		while (input.ready() ) {
+			line = input.readLine();
+			StringBuffer word = new StringBuffer();
+			for (int i = 0; i<line.length(); ++i) {
+				char c = line.charAt(i);
+				if (Character.isWhitespace(c)) { continue; }//Do nothing.
+				word.append(c);				
+			}
+			if (word.length() < 1) { continue; }//Do nothing.
+			add(word.toString() );
+			
+		}
+		input.close();
 	}
 }
