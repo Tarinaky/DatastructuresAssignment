@@ -42,7 +42,7 @@ public class Word {
 	
 	/**
 	 * 
-	 * @param other
+	 * @param other The second word to compare.
 	 * @return True iff the two Words are separated by only a single character change.
 	 */
 	public boolean isSimilar(String other) {
@@ -64,6 +64,14 @@ public class Word {
 		} else {
 			return false; // No misses occurred - the words are equal.
 		}
+	}
+	/**
+	 * @see isSimilar(String)
+	 * @param other The second word to compare.
+	 * @return True iff the two words are seperated by only a single character change.
+	 */
+	public boolean isSimilar(Word other) {
+		return isSimilar(other.getString() );
 	}
 	
 }

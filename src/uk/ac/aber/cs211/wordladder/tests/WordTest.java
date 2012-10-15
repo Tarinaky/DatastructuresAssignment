@@ -8,6 +8,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import uk.ac.aber.cs211.wordladder.Word;
+
 import junit.framework.TestCase;
 
 /**
@@ -38,7 +40,8 @@ public class WordTest extends TestCase {
 	 */
 	@Test
 	public void testGetString() {
-		fail("Not yet implemented");
+		Word word = new Word("foo");
+		assertEquals(word.getString(), "foo");
 	}
 
 	/**
@@ -46,7 +49,13 @@ public class WordTest extends TestCase {
 	 */
 	@Test
 	public void testIsSimilar() {
-		fail("Not yet implemented");
+		Word flash = new Word("flash");
+		Word clash = new Word("clash");
+		Word clock = new Word("clock");
+		
+		assertTrue(flash.isSimilar(clash));
+		assertFalse(flash.isSimilar(flash));
+		assertFalse(flash.isSimilar(clock));
 	}
 
 }
