@@ -3,13 +3,19 @@
  */
 package uk.ac.aber.cs211.wordladder;
 
+import java.io.Serializable;
+
 /**
  * @author Jacob Smith, jas32
  *
  * Encapsulates a single word as well as links to 'similar' words.
  */
-public class Word {
+public class Word implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8874966029145407255L;
 	/**
 	 * Internal representation of this particular word as a string of characters.
 	 */

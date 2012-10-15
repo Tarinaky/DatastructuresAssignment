@@ -40,8 +40,11 @@ public class WordGraphTest extends TestCase {
 		System.out.println("Current working directory: "+new File(".").getCanonicalPath() );
 		
 		WordGraph words = new WordGraph();
-		words.loadTextFile("data/wordlist_test.txt");
+		words.loadTextFile("data/wordlist_5.txt");
 		System.out.println(words.toString());
 	}
+	
+
+	
 
 }

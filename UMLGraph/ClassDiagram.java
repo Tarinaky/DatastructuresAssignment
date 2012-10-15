@@ -38,4 +38,5 @@ class WordGraph {
 	
 	//Load from text file.
 	public void loadTextFile(String path) {}
+	
 }
