@@ -14,13 +14,14 @@ public class Word {
 	 * Internal representation of this particular word as a string of characters.
 	 */
 	private String string;
-	private java.util.List<Word> edges;
+	private java.util.ArrayList<Word> edges;
 	
 	/**
 	 * @param string The string (no precceding/trailing spaces) containing 
 	 * the word to represent.
 	 */
 	public Word(String string) {
+		edges = new java.util.ArrayList<Word>();
 		this.string = string;
 	}
 	

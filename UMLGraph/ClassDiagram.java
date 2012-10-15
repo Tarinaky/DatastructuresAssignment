@@ -19,7 +19,7 @@ class Word {
 	public boolean isSimilar(Word other) { return false; }
 	
 	//Implementation of graph edges
-	private java.util.List<Word> edges;
+	private java.util.ArrayList<Word> edges;
 	public void addEdge(Word other) {}
 	public void testSimilarityAddEdges(Word other) {}
 	
@@ -31,7 +31,8 @@ class Word {
  *
  */
 class WordGraph {
-	private java.util.HashMap words;
+	private java.util.HashMap<String,Word> words;
 	
-	public void add(String string) {}
+	public void add(String word) {}
+	public Word get(String word) {}
 }
