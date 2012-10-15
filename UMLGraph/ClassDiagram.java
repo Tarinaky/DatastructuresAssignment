@@ -17,7 +17,7 @@ class Word {
 	public String getString() {}
 	public boolean isSimilar(String other) { return false; }
 	public boolean isSimilar(Word other) { return false; }
-	
+		
 	//Implementation of graph edges
 	private java.util.ArrayList<Word> edges;
 	public void addEdge(Word other) {}

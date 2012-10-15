@@ -30,10 +30,15 @@ public class WordGraph {
 	}
 	
 	public String toString() {
+		final int MAXLENGTH = 3;
 		StringBuffer builder = new StringBuffer();
+		int i = 0;
 		for (Word word: words.values() ) {
+			if (i++ >= MAXLENGTH) { break; }
 			builder.append(word+" ");
 		}
+		if (i >= MAXLENGTH) { builder.append("... ["+(words.size()-MAXLENGTH)+" others]"); }
+		
 		return builder.toString();
 	}
 	

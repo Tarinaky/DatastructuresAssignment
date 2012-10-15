@@ -53,7 +53,7 @@ public class Word implements Serializable {
 	/**
 	 * 
 	 * @param other The second word to compare.
-	 * @return True iff the two Words are separated by only a single character change.
+	 * @return True iff the two Words are separated by exactly one character change (ie, not equal).
 	 */
 	public boolean isSimilar(String other) {
 		int length = string.length();
@@ -78,7 +78,7 @@ public class Word implements Serializable {
 	/**
 	 * @see isSimilar(String)
 	 * @param other The second word to compare.
-	 * @return True iff the two words are seperated by only a single character change.
+	 * @return True iff the two words are separated by exactly one character change (ie, not equal).
 	 */
 	public boolean isSimilar(Word other) {
 		return isSimilar(other.getString() );
