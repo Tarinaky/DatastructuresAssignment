@@ -4,6 +4,7 @@
 package uk.ac.aber.cs211.wordladder;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Jacob Smith, jas32
@@ -20,14 +21,14 @@ public class Word implements Serializable {
 	 * Internal representation of this particular word as a string of characters.
 	 */
 	private String string;
-	private java.util.ArrayList<Word> edges;
+	private java.util.LinkedList<Word> edges;
 	
 	/**
 	 * @param string The string (no precceding/trailing spaces) containing 
 	 * the word to represent.
 	 */
 	public Word(String string) {
-		edges = new java.util.ArrayList<Word>();
+		edges = new java.util.LinkedList<Word>();
 		this.string = string;
 	}
 	
@@ -103,6 +104,10 @@ public class Word implements Serializable {
 			this.addEdge(other);
 			other.addEdge(this);
 		}
+	}
+	
+	public List<Word> getEdges() {
+		return edges;
 	}
 	
 }
