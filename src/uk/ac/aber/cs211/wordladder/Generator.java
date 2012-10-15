@@ -20,6 +20,12 @@ public class Generator {
 		random = new Random();
 	}
 	
+	/**
+	 * Loads the dictionary into the WordGraph before initialising the Generator with the 
+	 * start position in the graph.
+	 * @param string The string to begin the word ladder with.
+	 * @return A handle to the Generator being built.
+	 */
 	public Generator setStart(String string) {
 		wordLength = string.length();
 		
@@ -40,11 +46,20 @@ public class Generator {
 		
 	}
 	
+	/**
+	 * 
+	 * @param depth The number of steps the generated word ladder should have.
+	 * @return A handle to the generator being built.
+	 */
 	public Generator setDepth(int depth) { 
 		this.depth = depth; 
 		return this; 
 	}
 	
+	/**
+	 * Runs the generator over the WordGraph destructively.
+	 * @return A list of strings, corresponding to a random Word ladder or null (indicating no path was possible).
+	 */
 	public List<String> run() {
 		Stack<Word> visitedNodes = new java.util.Stack<Word>();
 		Word cursor = start;
