@@ -53,7 +53,7 @@ public class Discoverer {
 		while (!frontier.isEmpty() ) {
 			Stack<Word> solution = frontier.poll();
 			
-			System.out.println(solution);
+			//System.out.println(solution);
 			
 			Word cursor = solution.get(solution.size()-1);
 			
@@ -64,10 +64,11 @@ public class Discoverer {
 			List<Word> edges = cursor.getEdges();
 			for (Word seen: visited) { // Remove visited edges.
 				edges.remove(seen);
-				System.out.println(seen);
+				//System.out.println(seen);
 			}
 			
 			for (Word next: edges) {
+				@SuppressWarnings("unchecked")
 				Stack<Word> expand = (Stack<Word>) solution.clone();
 				expand.add(next);
 				frontier.offer(expand);

@@ -27,11 +27,20 @@ public class DiscovererTest extends TestCase {
 	@Test
 	public void testRun() throws Exception {
 		Discoverer discoverer = new Discoverer()
-				.setStart("flask")
+				.setStart("flash")
 				.setGoal("clock");
 		
 		List<Word> solution = discoverer.run();
 		
+		assertTrue(solution != null);
+		System.out.println(solution);
+		
+		discoverer = new Discoverer()
+		.setStart("head")
+		.setGoal("foot");
+
+		solution = discoverer.run();
+
 		assertTrue(solution != null);
 		System.out.println(solution);
 	}
