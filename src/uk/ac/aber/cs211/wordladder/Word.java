@@ -7,9 +7,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Jacob Smith, jas32
+ * 
  *
  * Encapsulates a single word as well as links to 'similar' words.
+ * @author Jacob Smith, jas32
  */
 public class Word implements Serializable {
 
@@ -77,7 +78,7 @@ public class Word implements Serializable {
 		}
 	}
 	/**
-	 * @see isSimilar(String)
+	 * @see Word#isSimilar(String)
 	 * @param other The second word to compare.
 	 * @return True iff the two words are separated by exactly one character change (ie, not equal).
 	 */

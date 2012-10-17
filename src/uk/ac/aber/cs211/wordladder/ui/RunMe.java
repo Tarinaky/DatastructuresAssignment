@@ -7,6 +7,12 @@ import uk.ac.aber.cs211.wordladder.Discoverer;
 import uk.ac.aber.cs211.wordladder.Generator;
 import uk.ac.aber.cs211.wordladder.Word;
 
+
+/**
+ * Command line interface for wordladder tools.
+ * @author Jacob Smith, jas32
+ *
+ */
 public class RunMe {
 
 	public RunMe() {
@@ -30,7 +36,11 @@ public class RunMe {
 		System.exit(-1);
 		
 	}
-	
+	/**
+	 * Uses {@link uk.ac.aber.cs211.wordladder.Generator} to produce a random word ladder.
+	 * args[1] is the initial word while args[2] is the depth of the word ladder to produce.
+	 * @param args Command line arguments from invocation.
+	 */
 	public static void generate(String[] args) {
 		String startWord = null;
 		int depth = 0;
@@ -68,6 +78,11 @@ public class RunMe {
 	}
 		
 
+	/**
+	 * Uses {@link uk.ac.aber.cs211.wordladder.Discoverer} to solve a word ladder.
+	 * args[1] is the start word while args[2] is the goal word.
+	 * @param args Command line arguments from invocation.
+	 */
 	public static void discover(String[] args) {
 		String startWord = null, endWord = null;
 		
@@ -107,7 +122,10 @@ public class RunMe {
 		System.out.println(solution);
 		System.exit(0);
 	}
-	
+	
+	/**
+	 * Prints usage hints to standard error.
+	 */
 	public static void printHelp() {
 		System.err.println("Usage:");
 		System.err.println("\tFind a word ladder connecting two words: " +

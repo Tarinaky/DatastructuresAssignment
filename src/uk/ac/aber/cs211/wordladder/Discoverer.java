@@ -8,10 +8,10 @@ import java.util.Stack;
 
 /**
  * 
- * @author Jacob Smith, jas32
+ * 
  * 
  * Produces the shortest word ladder possible for a given start and end string of the same length.
- *
+ * @author Jacob Smith, jas32
  */
 public class Discoverer {
 
