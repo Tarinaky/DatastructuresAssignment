@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * 
+ * @author Jacob Smith, jas32
+ * 
+ * Produces the shortest word ladder possible for a given start and end string of the same length.
+ *
+ */
 public class Discoverer {
 
 	private WordGraph words;
@@ -13,6 +20,12 @@ public class Discoverer {
 	private Queue<Stack<Word> > frontier;
 	private Stack<Word> visited;
 	
+	/**
+	 * Also loads the dictionary according to the length of the start word.
+	 * @param string The word to start the word ladder with.
+	 * @return The Discoverer under construction.
+	 * @throws IOException If the WordGraph is unable to load its dictionary.
+	 */
 	public Discoverer setStart(String string) throws IOException {
 		int length = string.length();
 		
@@ -39,6 +52,11 @@ public class Discoverer {
 		
 	}
 	
+	/**
+	 * 
+	 * @param string Sets the word the word ladder must end with.
+	 * @return The Discoverer under construction.
+	 */
 	public Discoverer setGoal(String string) {
 		this.goal = words.get(string);
 		if (goal == null) {
@@ -50,6 +68,10 @@ public class Discoverer {
 		
 	}
 	
+	/**
+	 * 
+	 * @return The shortest word-ladder possible, or null if no ladder can be found.
+	 */
 	public List<Word> run() {
 		while (!frontier.isEmpty() ) {
 			Stack<Word> solution = frontier.poll();

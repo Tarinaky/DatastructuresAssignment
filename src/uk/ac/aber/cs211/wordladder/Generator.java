@@ -7,6 +7,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * Performs a random walk through the dictionary, to generate a Word ladder of a given depth
+ * from a given initial string.
+ * @author Jacob Smith, jas32
+ *
+ */
 public class Generator {
 	
 	private WordGraph words;
