@@ -14,9 +14,14 @@ import junit.framework.TestCase;
 
 public class DiscovererTest extends TestCase {
 
+	private Discoverer fixture;
+	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
+		
+		fixture = new Discoverer();
+	
 	}
 
 	@After
@@ -25,22 +30,28 @@ public class DiscovererTest extends TestCase {
 	}
 
 	@Test
-	public void testRun() throws Exception {
-		Discoverer discoverer = new Discoverer()
-				.setStart("flash")
-				.setGoal("clock");
-		
-		List<Word> solution = discoverer.run();
+	public void testRunFlashClock() throws Exception {
+		fixture.setStart("flash").setGoal("clock");
+		List<Word> solution = fixture.run();
 		
 		assertTrue(solution != null);
 		System.out.println(solution);
+	}
 		
-		discoverer = new Discoverer()
-		.setStart("head")
-		.setGoal("foot");
-
-		solution = discoverer.run();
-
+		
+	public void testRunHeadFoot() throws Exception {
+		fixture.setStart("head").setGoal("foot");
+		List<Word> solution = fixture.run();
+			
+		assertTrue(solution != null);
+		System.out.println(solution);
+			
+	}
+	
+	public void testRunSpiderWriter() throws Exception {
+		fixture.setStart("spider").setGoal("writer");
+		List<Word> solution = fixture.run();
+		
 		assertTrue(solution != null);
 		System.out.println(solution);
 	}

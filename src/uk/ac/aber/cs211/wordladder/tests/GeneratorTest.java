@@ -14,9 +14,12 @@ import junit.framework.TestCase;
 
 public class GeneratorTest extends TestCase {
 
+	private Generator fixture;
+	
 	@Before
 	protected void setUp() throws Exception {
 		super.setUp();
+		fixture = new Generator();
 	}
 
 	@After
@@ -25,9 +28,23 @@ public class GeneratorTest extends TestCase {
 	}
 
 	@Test
-	public void testRun() throws IOException {
-		Generator generator = new Generator().setDepth(10).setStart("flask");
-		List<String> output = generator.run();
+	public void testRunFlask() throws IOException {
+		fixture.setDepth(10).setStart("flask");
+		List<String> output = fixture.run();
+		assertTrue(output != null);
+		System.out.println(output);
+	}
+	
+	public void testRunCash() throws IOException {
+		fixture.setDepth(10).setStart("cash");
+		List<String> output = fixture.run();
+		assertTrue(output != null);
+		System.out.println(output);
+	}
+	
+	public void testRunPenny() throws IOException {
+		fixture.setDepth(10).setStart("penny");
+		List<String> output = fixture.run();
 		assertTrue(output != null);
 		System.out.println(output);
 	}
@@ -40,7 +57,7 @@ public class GeneratorTest extends TestCase {
 	public void testFail() throws IOException {
 		Generator generator = new Generator().setDepth(27).setStart("a");
 		List<String> output = generator.run();
-		System.out.println(output);
+		//System.out.println(output);
 		assertTrue(output == null);
 		
 	}
