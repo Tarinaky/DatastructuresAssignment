@@ -129,11 +129,11 @@ public class RunMe {
 	public static void printHelp() {
 		System.err.println("Usage:");
 		System.err.println("\tFind a word ladder connecting two words: " +
-				"java wordladder.jar discover <start word> <end word>");
+				"java -jar wordladder.jar discover <start word> <end word>");
 		System.err.println("\tProduce a word ladder of length 'depth' from a start word: " +
-				"java wordladder.jar generate <start word> <ladder depth>");
+				"java -jar wordladder.jar generate <start word> <ladder depth>");
 		System.err.println("\tPrint this message: " +
-				"java wordladder.jar --help");
+				"java -jar wordladder.jar --help");
 	}
 
 }

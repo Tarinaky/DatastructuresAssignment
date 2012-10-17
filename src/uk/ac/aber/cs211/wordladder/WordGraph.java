@@ -5,6 +5,7 @@ package uk.ac.aber.cs211.wordladder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * 
@@ -75,7 +76,9 @@ public class WordGraph {
 	 * @throws IOException 
 	 */
 	public void loadTextFile(String path) throws IOException {
-		BufferedReader input = new BufferedReader(new java.io.FileReader(path)); 
+		BufferedReader input = new BufferedReader(
+				new InputStreamReader(
+						this.getClass().getClassLoader().getResourceAsStream(path))); 
 		String line;
 		while (input.ready() ) {
 			line = input.readLine();
