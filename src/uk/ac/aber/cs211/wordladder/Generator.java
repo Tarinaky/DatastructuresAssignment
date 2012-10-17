@@ -32,16 +32,10 @@ public class Generator {
 	 * @param string The string to begin the word ladder with.
 	 * @return A handle to the Generator being built.
 	 */
-	public Generator setStart(String string) {
+	public Generator setStart(String string) throws IOException {
 		wordLength = string.length();
 		
-		try {
-			words.loadTextFile("data/wordlist_"+wordLength+".txt");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(-1);
-		}
+		words.loadTextFile("data/wordlist_"+wordLength+".txt");
 		
 		start = words.get(string);
 		if (start == null) {

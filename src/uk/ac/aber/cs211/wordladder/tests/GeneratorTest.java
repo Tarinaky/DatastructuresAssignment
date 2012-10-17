@@ -1,6 +1,7 @@
 package uk.ac.aber.cs211.wordladder.tests;
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.After;
@@ -24,7 +25,7 @@ public class GeneratorTest extends TestCase {
 	}
 
 	@Test
-	public void testRun() {
+	public void testRun() throws IOException {
 		Generator generator = new Generator().setDepth(10).setStart("flask");
 		List<String> output = generator.run();
 		assertTrue(output != null);
@@ -34,8 +35,9 @@ public class GeneratorTest extends TestCase {
 	/**
 	 * There are only 26 entries in wordlist_1.txt (all of which are mutually linked)...
 	 * So any attempt to walk through 27 entries should fail.
+	 * @throws IOException 
 	 */
-	public void testFail() {
+	public void testFail() throws IOException {
 		Generator generator = new Generator().setDepth(27).setStart("a");
 		List<String> output = generator.run();
 		System.out.println(output);
