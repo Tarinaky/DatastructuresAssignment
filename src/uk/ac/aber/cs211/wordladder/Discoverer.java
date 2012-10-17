@@ -32,6 +32,7 @@ public class Discoverer {
 		frontier.peek().add(start);
 		
 		this.visited = new Stack<Word>();
+		visited.add(start);
 		
 		return this;
 		
