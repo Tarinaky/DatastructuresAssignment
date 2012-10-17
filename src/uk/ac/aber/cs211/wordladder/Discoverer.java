@@ -71,6 +71,7 @@ public class Discoverer {
 				@SuppressWarnings("unchecked")
 				Stack<Word> expand = (Stack<Word>) solution.clone();
 				expand.add(next);
+				visited.add(next);
 				frontier.offer(expand);
 				
 				
