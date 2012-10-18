@@ -27,6 +27,14 @@ class List<Word> {}
  * @opt hide
  */
 class Random {}
+/**
+ * 
+ * @opt hide
+ *
+ */
+class LinkedList<Word> {}
+/** @opt hide */
+class ArrayList<Word> {}
 
 class Word {
 	public Word() {}
@@ -69,8 +77,8 @@ class WordGraph {
 class Discoverer {
 	private WordGraph words;
 	private Word start,goal,cursor;
-	private Queue<Stack<Word> > frontier;
-	private Stack<Word> visited;
+	private Queue<ArrayList<Word> > frontier;
+	private LinkedList<Word> visited;
 	
 	public Discoverer() {}
 	public Discoverer setStart(String string) throws IOException {}
