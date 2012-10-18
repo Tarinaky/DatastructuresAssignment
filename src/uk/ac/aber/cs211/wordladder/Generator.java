@@ -61,7 +61,7 @@ public class Generator {
 	 * @return A list of strings, corresponding to a random Word ladder or null (indicating no path was possible).
 	 */
 	public List<String> run() {
-		ArrayList<Word> visitedNodes = new java.util.ArrayList<Word>();
+		ArrayList<Word> visitedNodes = new java.util.ArrayList<Word>(depth);
 		Word cursor = start;
 		visitedNodes.add(cursor);
 		
