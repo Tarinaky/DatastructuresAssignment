@@ -1,10 +1,11 @@
 package uk.ac.aber.cs211.wordladder;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayList;
 
 /**
  * 
@@ -17,8 +18,8 @@ public class Discoverer {
 
 	private WordGraph words;
 	private Word start, goal, cursor;
-	private Queue<Stack<Word> > frontier;
-	private Stack<Word> visited;
+	private Queue<ArrayList<Word> > frontier;
+	private ArrayList<Word> visited;
 	
 	/**
 	 * Also loads the dictionary according to the length of the start word.
@@ -40,11 +41,11 @@ public class Discoverer {
 			
 		
 		this.start = word;
-		frontier = new LinkedList<Stack<Word> >();
-		frontier.offer(new Stack<Word>() );
+		frontier = new LinkedList<ArrayList<Word> >();
+		frontier.offer(new ArrayList<Word>() );
 		frontier.peek().add(start);
 		
-		this.visited = new Stack<Word>();
+		this.visited = new ArrayList<Word>();
 		visited.add(start);
 		
 		return this;
@@ -74,11 +75,11 @@ public class Discoverer {
 	 */
 	public List<Word> run() {
 		while (!frontier.isEmpty() ) {
-			Stack<Word> solution = frontier.poll();
+			ArrayList<Word> solution = frontier.poll();
 			
 			//System.out.println(solution);
 			
-			Word cursor = solution.get(solution.size()-1);
+			cursor = solution.get(solution.size()-1);
 			
 			if (cursor == goal) { //Check if goal is reached.
 				return solution;
@@ -92,7 +93,7 @@ public class Discoverer {
 			
 			for (Word next: edges) {
 				@SuppressWarnings("unchecked")
-				Stack<Word> expand = (Stack<Word>) solution.clone();
+				ArrayList<Word> expand = (ArrayList<Word>) solution.clone();
 				expand.add(next);
 				visited.add(next);
 				frontier.offer(expand);
