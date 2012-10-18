@@ -61,7 +61,7 @@
 \begin{document}
 \maketitle
 
-\section{Invocation}
+\section{Program Invocation}
 
 \subsection{Generation mode}
 The program can be invoked in generation mode with \texttt{java -jar wordladder.jar <start word> <depth>}. This produces a random word ladder with \texttt{start word} as the first entry out to the depth specified by \texttt{depth} assuming such a word ladder is possible with the dictionary included.
@@ -69,8 +69,17 @@ The program can be invoked in generation mode with \texttt{java -jar wordladder.
 \subsection{Discovery mode}
 The program can be invoked in discovery mode with \texttt{java -jar wordladder.jar <start word> <end word>}. This produces a word ladder with the given start and end points. It will attempt to construct the shortest word ladder possible using the included dictionary.
 
-\subsection{A subsection}
+\section{Class Schema}
 
-More text.
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{ClassDiagram}
+\caption{Class Diagram for uk.ac.aber.cs211.wordladder package.}
+\end{figure}
+
+The \texttt{Word} object encapsulates a word as a part of a graph whose edges represent valid transitions to 'similar' words (ie those with exactly one different character). These edges are stored as an \texttt{LinkedList<Word>} (the many:many aggregation is not pictured). A LinkedList is used as this structure is typically very small and both Generator and Discoverer need to remove edges that are no longer promising frontiers for expansion. The method \texttt{testSimilarityAddEdges(Word)} compares a word with this one, if they are 'similar' it adds a pair of edges between them (one in each direction). It is this method which is used to populate the graph.
+
+\texttt{WordGraph} stores the dictionary of words known to the program. It may be interrogated for a particular \texttt{Word} using the method \texttt{get(String)}. Words should be added to the dictionary first using \texttt{add(String)}, this behaves as a factory for new Word objects - populating their edges.
+
+\texttt{Generator} and \texttt{Discoverer} are the entry-points into the package. Their setters are used to initialise them before being \texttt{run()}. Their algorithms (and thus attributes) are described in more detail in the next section.
 
 \end{document}
