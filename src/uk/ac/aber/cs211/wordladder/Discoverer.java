@@ -19,7 +19,7 @@ public class Discoverer {
 	private WordGraph words;
 	private Word start, goal, cursor;
 	private Queue<ArrayList<Word> > frontier;
-	private ArrayList<Word> visited;
+	private LinkedList<Word> visited;
 	
 	/**
 	 * Also loads the dictionary according to the length of the start word.
@@ -45,7 +45,7 @@ public class Discoverer {
 		frontier.offer(new ArrayList<Word>() );
 		frontier.peek().add(start);
 		
-		this.visited = new ArrayList<Word>();
+		this.visited = new LinkedList<Word>();
 		visited.add(start);
 		
 		return this;
