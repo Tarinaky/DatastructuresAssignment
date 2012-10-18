@@ -31,6 +31,8 @@
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 % These packages are all incorporated in the memoir class to one degree or another...
 
+\usepackage{program} % code listings.
+
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
 \pagestyle{fancy} % options: empty , plain , fancy
@@ -71,7 +73,7 @@ The program can be invoked in discovery mode with \texttt{java -jar wordladder.j
 
 \section{Class Schema}
 
-\begin{figure}[h!]
+\begin{figure}[h!!]
 \includegraphics[width=\textwidth]{ClassDiagram}
 \caption{Class Diagram for uk.ac.aber.cs211.wordladder package.}
 \end{figure}
@@ -82,4 +84,34 @@ The \texttt{Word} object encapsulates a word as a part of a graph whose edges re
 
 \texttt{Generator} and \texttt{Discoverer} are the entry-points into the package. Their setters are used to initialise them (and their \texttt{WordGraph}) before being \texttt{run()}. Their algorithms (and thus attributes) are described in more detail in the next section. Both classes modify their \texttt{WordGraph} during operation - a new one must be built (by calling their setters) before it can be run again.
 
+\section{Algorithms and Search Strategy}
+
+\begin{figure}[h!!]
+\caption{Algorithm for random walk taken by Generator.}
+\begin{program}
+\BEGIN
+cursor := start \rcomment{$start$ is the first word in the ladder}
+|push | cursor | on | stack
+\FOR i := 1 \TO depth \DO \rcomment{$depth$ is the length of the ladder}
+	edges := | get | edges | from | cursor \rcomment{Expand edges}
+	\FOR seen | in | stack \DO
+		|remove | seen | from | edges  \rcomment{Prune visited elements}
+	\OD
+	\IF edges | is empty | \DO 
+		i := i - 2 \rcomment{Backtrack}
+		cursor := |pop from | stack 
+	\ELSE
+		cursor := |random from | edges \rcomment{Take a random walk}
+		|push | cursor | on | stack 
+	\OD
+\OD
+\IF stack | length equals | depth | |\DO
+	|return | stack 
+\ELSE
+	| no ladder is possible |
+\OD
+	
+\END	
+\end{program}
+\end{figure}
 \end{document}
