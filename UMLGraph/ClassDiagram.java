@@ -39,7 +39,7 @@ class Word {
 	public boolean isSimilar(Word other) { return false; }
 		
 	//Implementation of graph edges
-	private java.util.ArrayList<Word> edges;
+	private java.util.LinkedList<Word> edges;
 	public void addEdge(Word other) {}
 	public void testSimilarityAddEdges(Word other) {}
 	

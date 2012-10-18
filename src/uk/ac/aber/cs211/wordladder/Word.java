@@ -12,12 +12,8 @@ import java.util.List;
  * Encapsulates a single word as well as links to 'similar' words.
  * @author Jacob Smith, jas32
  */
-public class Word implements Serializable {
+public class Word {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8874966029145407255L;
 	/**
 	 * Internal representation of this particular word as a string of characters.
 	 */
