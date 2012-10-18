@@ -80,6 +80,6 @@ The \texttt{Word} object encapsulates a word as a part of a graph whose edges re
 
 \texttt{WordGraph} stores the dictionary of words known to the program. It may be interrogated for a particular \texttt{Word} using the method \texttt{get(String)}. Words should be added to the dictionary first using \texttt{add(String)}, this behaves as a factory for new \texttt{Word} objects - populating their edges.
 
-\texttt{Generator} and \texttt{Discoverer} are the entry-points into the package. Their setters are used to initialise them (and their \texttt{WordGraph}) before being \texttt{run()}. Their algorithms (and thus attributes) are described in more detail in the next section. Both classes destroy their \texttt{WordGraph} during operation - a new one must be built (by calling their setters) before it can be run again.
+\texttt{Generator} and \texttt{Discoverer} are the entry-points into the package. Their setters are used to initialise them (and their \texttt{WordGraph}) before being \texttt{run()}. Their algorithms (and thus attributes) are described in more detail in the next section. Both classes modify their \texttt{WordGraph} during operation - a new one must be built (by calling their setters) before it can be run again.
 
 \end{document}
