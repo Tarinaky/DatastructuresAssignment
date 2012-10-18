@@ -61,9 +61,9 @@ public class Generator {
 	 * @return A list of strings, corresponding to a random Word ladder or null (indicating no path was possible).
 	 */
 	public List<String> run() {
-		Stack<Word> visitedNodes = new java.util.Stack<Word>();
+		ArrayList<Word> visitedNodes = new java.util.ArrayList<Word>();
 		Word cursor = start;
-		visitedNodes.push(cursor);
+		visitedNodes.add(cursor);
 		
 		for (int i = 1; i < depth && i >= 1; ++i) {
 			List<Word> edges = cursor.getEdges();
@@ -74,11 +74,12 @@ public class Generator {
 			if (edges.size() < 1) {
 				//Backtrack!
 				i -= 2;
-				cursor = visitedNodes.pop();
+				cursor = visitedNodes.get(visitedNodes.size()-1);
+				visitedNodes.remove(visitedNodes.size()-1);
 				
 			} else {			
 				cursor = edges.get(random.nextInt(edges.size() ) );
-				visitedNodes.push(cursor);
+				visitedNodes.add(cursor);
 			
 			}
 		}	

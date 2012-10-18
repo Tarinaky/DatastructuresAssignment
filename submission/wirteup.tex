@@ -87,31 +87,34 @@ The \texttt{Word} object encapsulates a word as a part of a graph whose edges re
 \section{Algorithms and Search Strategy}
 
 \begin{figure}[h!!]
-\caption{Algorithm for random walk taken by Generator.}
+$depth$ and $start$ are both parameters, representing the size of the desired word ladder and the first element respectively. $array$ is an array or dynamic array with length at least equal to $depth$.
+
 \begin{program}
 \BEGIN
-cursor := start \rcomment{$start$ is the first word in the ladder}
-|push | cursor | on | stack
-\FOR i := 1 \TO depth \DO \rcomment{$depth$ is the length of the ladder}
+cursor := start
+|append | cursor | to | array
+\FOR i := 1 \TO depth \DO
 	edges := | get | edges | from | cursor \rcomment{Expand edges}
-	\FOR seen | in | stack \DO
+	\FOR seen | in | array \DO
 		|remove | seen | from | edges  \rcomment{Prune visited elements}
 	\OD
 	\IF edges | is empty | \DO 
 		i := i - 2 \rcomment{Backtrack}
-		cursor := |pop from | stack 
+		cursor := |last in | array
+		|remove last in |array
 	\ELSE
 		cursor := |random from | edges \rcomment{Take a random walk}
-		|push | cursor | on | stack 
+		|append | cursor | to | array 
 	\OD
 \OD
-\IF stack | length equals | depth | |\DO
-	|return | stack 
+\IF array | length equals | depth | |\DO
+	|return | array 
 \ELSE
-	| no ladder is possible |
+	|return |null \rcomment{No ladder is possible}
 \OD
 	
 \END	
 \end{program}
+\caption{Algorithm for random walk taken by Generator.}
 \end{figure}
 \end{document}
