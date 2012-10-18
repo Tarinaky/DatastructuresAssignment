@@ -71,11 +71,12 @@ The program can be invoked in generation mode with \texttt{java -jar wordladder.
 \subsection{Discovery mode}
 The program can be invoked in discovery mode with \texttt{java -jar wordladder.jar <start word> <end word>}. This produces a word ladder with the given start and end points. It will attempt to construct the shortest word ladder possible using the included dictionary.
 
-\section{Class Schema}
+\section{Class Schema (figure \ref{fig:ClassDiagram}) }
 
 \begin{figure}[h!!]
 \includegraphics[width=\textwidth]{ClassDiagram}
 \caption{Class Diagram for uk.ac.aber.cs211.wordladder package.}
+\label{fig:ClassDiagram}
 \end{figure}
 
 The \texttt{Word} object encapsulates a word as a part of a graph whose edges represent valid transitions to 'similar' words (ie those with exactly one different character). These edges are stored as a \texttt{LinkedList<Word>} (the many:many aggregation is not pictured). A linked list is used as this structure is typically very small and both Generator and Discoverer need to remove edges that are no longer promising frontiers for expansion. The method \texttt{testSimilarityAddEdges(Word)} compares a word with this one, if they are 'similar' it adds a pair of edges between them (one in each direction). It is this method which is used to populate the graph.
@@ -86,9 +87,11 @@ The \texttt{Word} object encapsulates a word as a part of a graph whose edges re
 
 \section{Algorithms and Search Strategy}
 
-\begin{figure}[h!!]
-$depth$ and $start$ are both parameters, representing the size of the desired word ladder and the first element respectively. $array$ is an array or dynamic array with length at least equal to $depth$.
+\subsection{Random Wordladder Generation (figure \ref{fig:GeneratorAlgorithm}) } 
+$depth$ and $start$ are both parameters, representing the size of the desired word ladder and the first element respectively. $array$ is an empty array or dynamic array with length at least equal to $depth$.
 
+\begin{figure}[h!!]
+\caption{Algorithm for random walk taken by Generator.}
 \begin{program}
 \BEGIN
 cursor := start
@@ -98,23 +101,60 @@ cursor := start
 	\FOR seen | in | array \DO
 		|remove | seen | from | edges  \rcomment{Prune visited elements}
 	\OD
-	\IF edges | is empty | \DO 
+	\IF edges | is empty| \THEN 
 		i := i - 2 \rcomment{Backtrack}
 		cursor := |last in | array
 		|remove last in |array
 	\ELSE
 		cursor := |random from | edges \rcomment{Take a random walk}
 		|append | cursor | to | array 
-	\OD
+	\FI
 \OD
-\IF array | length equals | depth | |\DO
+\IF array | length equals | depth | |\THEN
 	|return | array 
 \ELSE
 	|return |null \rcomment{No ladder is possible}
-\OD
+\FI
 	
 \END	
 \end{program}
-\caption{Algorithm for random walk taken by Generator.}
+
+\label{fig:GeneratorAlgorithm}
 \end{figure}
+
+\subsection{Algorithm to find word ladder linking two words (figure \ref{fig:DiscoverAlgorithm}).}
+$queue$ is a queue of dynamic arrays, initialised with the start word as a singleton array. Arrays are used to represent possible solutions as it is necessary to copy failed solutions (to propose new solutions) and a contiguous block of memory can be copied in fewer low-level operations than a non-contiguous block of memory. $goal$ is simply the destination the word ladder must reach as a parameter. $list$ is an empty list, into which any 'visited' words will be placed, so that they will not be considered in any future solutions.
+
+
+\begin{figure}[h!!]
+\caption{Algorithm to solve a word ladder given a start and end word of equal length, using Breadth First Search.}
+\begin{program}
+\BEGIN
+\WHILE queue| is not empty|\DO
+	solution := |pop from |queue \rcomment{Get the next potential solution.}
+	cursor := |last in |solution
+
+	\IF cursor| equals |goal | |\THEN
+		|return |solution \rcomment{Return the first valid solution found.}
+	\FI
+	
+	edges := |get |edges| from |cursor
+	\FOR seen| in |list \DO
+		|remove |seen| from |edges \rcomment{Prune visited nodes from search.}
+	\OD
+
+	\FOR word| in |edges \DO
+		new solution := |copy |solution \rcomment{Propose a new solution.}
+		|append |word| to |new solution
+		|append |word| to |list \rcomment{Consider no word more than once.}
+		|push |new solution| to queue| \rcomment{Push it to the back of the queue.}
+	\OD
+
+	|return |null \rcomment{No solution is possible with the current dictionary.}
+\OD
+\END
+\end{program}
+\label{fig:DiscoverAlgorithm}
+\end{figure}
+
 \end{document}
