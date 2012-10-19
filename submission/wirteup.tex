@@ -32,6 +32,8 @@
 % These packages are all incorporated in the memoir class to one degree or another...
 
 \usepackage{program} % code listings.
+\usepackage{rotating}
+\usepackage{tabularx}
 
 %%% HEADERS & FOOTERS
 \usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
@@ -158,5 +160,71 @@ $queue$ is a queue of dynamic arrays, initialised with the start word as a singl
 \end{program}
 \label{fig:DiscoverAlgorithm}
 \end{figure}
+
+
+\section{Testing}
+\subsection{Discovery}
+The wordladder found for flash to clock is: [flash, flask, flack, flock, clock].
+
+The wordladder found for head to foot is: [head, bead, beat, boat, boot, foot].
+
+The wordladder found for spider to writer is: [spider, slider, sliver, shiver, shiner, shines, whines, whites, whiter, writer].
+
+\subsection{Generation}
+Each of the following is depth 10.
+
+Starting with flask the following can be generated: [flask, flash, flesh, flush, plush, blush, brush, crush, crash, clash].
+
+Starting with cash the following can be generated: [cash, mash, mach, math, path, oath, oats, bats, cats, cans].
+
+Starting with penny the following can be generated: [penny, lenny, jenny, benny, denny, danny, finny, funny, bunny, bundy]. This hilights a flaw with the data files used as they include names - the use of a better word list would remove this issue.
+
+\begin{table}[h!!]
+\begin{tabularx}{\linewidth}{| r | X | l |}
+\hline
+Junit identifier & Test description & Pass/Fail\\
+\hline
+DiscoverTest.testRunFlashClock & Find a word ladder linking the words flash and clock. & Pass\\
+DiscoverTest.testRunHeadFoot & Find a word ladder linking the words head and foot. & Pass\\
+DiscoverTest.RunSpiderWriter & Find a word ladder linking the words spider and writer. & Pass\\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h!!]
+\begin{tabularx}{\linewidth}{| r | X | l |}
+\hline
+Junit identifier & Test description & Pass/Fail\\
+\hline
+WordGraphTest.testLoadTextFile & Load data/wordlist\_{}5.txt in to a word graph. & Pass \\
+WordGraphTest.testAdd & Adds a word to an empty dictionary and then attempts to retrieve its Word object. & Pass\\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h!!]
+\begin{tabularx}{\linewidth}{| r | X | l |}
+\hline
+Junit identifier & Test description & Pass/Fail\\
+\hline
+WordTest.testGetString & Creates a Word object and asserts that its string component is unchanged. & Pass\\
+WordTest.testIsSimilar & Asserts that flash is similar to clash, but not to flash or clock using isSimilar(Word) method. & Pass\\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h!!]
+\begin{tabularx}{\linewidth}{| r | X | l |}
+\hline
+Junit identifier & Test description & Pass/Fail\\
+\hline
+GeneratorTest.testRunFlask & Creates a depth 10 wordladder starting with flask. & Pass \\
+GeneratorTest.testRunCash & Creates a depth 10 wordladder starting with cash. & Pass \\
+GeneratorTest.testRunPenny & Creates a depth 10 wordladder starting with penny. & Pass \\
+GeneratorTest.testFail & Determine it is impossible to create a ladder of depth 27 using only latin characters (a-z). & Pass\\
+\hline
+\end{tabularx}
+\end{table}
+
 
 \end{document}
