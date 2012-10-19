@@ -96,17 +96,19 @@ $depth$ and $start$ are both parameters, representing the size of the desired wo
 \BEGIN
 cursor := start
 |append | cursor | to | array
-\FOR i := 1 \TO depth \DO
-	edges := | get | edges | from | cursor \rcomment{Expand edges}
+i := 1
+\WHILE i < depth | and |i >= 1 \DO
+
+	edges := | get | edges | from | cursor \rcomment{Expand edges.}
 	\FOR seen | in | array \DO
-		|remove | seen | from | edges  \rcomment{Prune visited elements}
+		|remove | seen | from | edges  \rcomment{Prune visited elements.}
 	\OD
 	\IF edges | is empty| \THEN 
-		i := i - 2 \rcomment{Backtrack}
+		i := i - 2 \rcomment{Backtrack.}
 		cursor := |last in | array
 		|remove last in |array
 	\ELSE
-		cursor := |random from | edges \rcomment{Take a random walk}
+		cursor := |random from | edges \rcomment{Take a random walk.}
 		|append | cursor | to | array 
 	\FI
 \OD
