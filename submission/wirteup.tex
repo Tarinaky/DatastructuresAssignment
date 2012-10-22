@@ -151,7 +151,7 @@ $queue$ is a queue of dynamic arrays, initialised with the start word as a singl
 		new solution := |copy |solution \rcomment{Propose a new solution.}
 		|append |word| to |new solution
 		|append |word| to |list \rcomment{Consider no word more than once.}
-		|push |new solution| to queue| \rcomment{Push it to the back of the queue.}
+		|push |new solution| to |queue \rcomment{Push it to the back of the queue.}
 	\OD
 
 	|return |null \rcomment{No solution is possible with the current dictionary.}
